@@ -1,0 +1,19 @@
+# Default pipeline configuration.
+data:
+  tickers: [AAPL, MSFT, GOOGL, AMZN, NVDA]
+  start: "2015-01-01"
+  cache_dir: data/cache
+
+features:
+  horizon: 1              # predict 1 trading day ahead
+  rsi_window: 14
+  bollinger_window: 20
+  volatility_windows: [10, 21]
+
+model:
+  default: gradient_boosting
+  n_splits: 5             # expanding-window walk-forward folds
+
+backtest:
+  cost_bps: 5.0           # round-trip transaction cost
+  risk_free_rate: 0.0
